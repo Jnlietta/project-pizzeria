@@ -35,7 +35,7 @@ const select = {
 
   const classNames = {
     menuProduct: {
-      wrapperActive: 'active',
+      wrapperActive: '.active',
       imageVisible: 'active',
     },
   };
@@ -92,9 +92,9 @@ const select = {
       event.preventDefault();
 
       /* add class active to clicked product */
-      const clickedProduct = thisProduct.element.querySelectorAll('article.product');
-      console.log('clickedProducts',clickedProduct);
-      //clickedProduct.classList.toggle('active');
+      const clickedProduct = document.querySelector('article.product');
+      console.log('clickedProduct',clickedProduct);
+      clickedProduct.classList.toggle('active');
 
       /* find active product (product that has active class) */
       const activeProduct = thisProduct.element.querySelector(classNames.menuProduct.wrapperActive);
@@ -105,6 +105,8 @@ const select = {
         
       /* toggle active class on thisProduct.element */
       activeProduct.classList.toggle(classNames.menuProduct.wrapperActive);
+      } else{
+        console.log('Coś poszło nie tak :(');
       }
     });
 
