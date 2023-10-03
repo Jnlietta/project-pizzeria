@@ -119,7 +119,7 @@ const select = {
       if(activeProduct != null && activeProduct != thisProduct.element) {
         activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
       } else{
-        console.log('Coś poszło nie tak :(');
+        console.log('Brawo rozwijasz akordeon!');
       }
       /* toggle active class on thisProduct.element */
       thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);  
@@ -152,6 +152,64 @@ const select = {
       const thisProduct = this;
 
       console.log('Nazwa metody: processOrder');
+
+      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log('formData:',formData);
+
+      // set price to default price
+      let price = thisProduct.data.price;
+
+      // for every category (param)...
+      for(let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+        console.log(paramId, param);
+
+        // for every option in this category
+        for(let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+          console.log(optionId, option);
+
+          // check if optionId of category paramId is selected in form formData
+          if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) {
+            console.log('paramId istnieje w formData:',formData.hasOwnProperty(paramId));
+            console.log('optionId istnieje w paramId i nazywa się:', optionId);
+
+            /*
+              if(paramId.includes(optionId)){
+              console.log('optionId istnieje w paramId i nazywa się:',optionId);
+              }
+            */
+
+            // chceck if option is not default                                        option, else increase price by the cost of this option
+            if(!option.default){
+              console.log('   option -',optionId,'- is not default');
+
+              //add option price to price variable
+              price += option.price;
+            }
+
+          } else {
+            console.log('nie ma tego optionId:', optionId);
+
+            //check if the option is default
+            if(option.default){
+              console.log('   option -',optionId,'- is default');
+
+              // reduce price variable
+              price -= option.price;
+            }     
+
+          }
+
+        }
+      }
+
+      // update calculated price in the HTML
+      thisProduct.priceElem.innerHTML = price;
+
     }
 
   }
