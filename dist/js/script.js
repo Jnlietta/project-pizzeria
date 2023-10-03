@@ -60,10 +60,16 @@ const select = {
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
-
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
+      
       console.log('new Product:', thisProduct);
+      console.log('thisProduct.form',thisProduct.form);
+      console.log('thisProduct.formInputs',thisProduct.formInputs);
     }
+
     renderInMenu(){
       const thisProduct = this;
 
@@ -79,6 +85,7 @@ const select = {
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
+
     getElements(){
       const thisProduct = this;
     
@@ -88,15 +95,16 @@ const select = {
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     }
+
     initAccordion(){
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
-    const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-    console.log('clickableTrigger',clickableTrigger);
+    //const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+    console.log('accordionTrigger',thisProduct.accordionTrigger);
 
     /* START: add event listener to clickable trigger on event click */
-    clickableTrigger.addEventListener('click', function(event) {
+    thisProduct.accordionTrigger.addEventListener('click', function(event) {
       /* prevent default action for event */
       event.preventDefault();
 
@@ -114,10 +122,36 @@ const select = {
         console.log('Coś poszło nie tak :(');
       }
       /* toggle active class on thisProduct.element */
-      thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-      
+      thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);  
     });
+    }
 
+    initOrderForm(){
+      const thisProduct = this;
+
+      console.log('Nazwa metody: initOrderForm');
+
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+      
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+      
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+
+    processOrder(){
+      const thisProduct = this;
+
+      console.log('Nazwa metody: processOrder');
     }
 
   }
