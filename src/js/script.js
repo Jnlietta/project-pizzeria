@@ -74,26 +74,27 @@ const select = {
       const thisProduct = this;
 
       /* generate HTML based on template */
-      const generatedHTML = templates.menuProduct(thisProduct.data);
+      const generatedHTML = templates.menuProduct(thisProduct.data);  //string szablonu z danymi thisproduct.data
 
       /* create element using utils.createElementFromHTML */
-      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML); //czym jest product.element, tworzymy ze string !prawdziwy element html!
 
       /* find menu container */
       const menuContainer = document.querySelector(select.containerOf.menu);
 
       /* add element to menu */
-      menuContainer.appendChild(thisProduct.element);
+      menuContainer.appendChild(thisProduct.element);//dodaj dziecko do elementu nowy html
     }
 
     getElements(){
       const thisProduct = this;
-    
+    //?????czy to sa referencje? TAK
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs); //czemu to jest all? bo mamy np w pizzy kilka takich tagów w których możemy  wybierac opcje?
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -112,7 +113,7 @@ const select = {
       console.log('this',this);
 
       /* find active product (product that has active class) */
-      const activeProduct = document.querySelector('.product.active');
+      const activeProduct = document.querySelector('.product.active'); //czemu wybieramy taką opcje skoro usunelismy klase aktive i czemu jak wpisywałam thisproduct.element to nie działało
       console.log('activeProduct',activeProduct);
 
       /* if there is active product and it's not thisProduct.element, remove class active from it */
@@ -177,13 +178,7 @@ const select = {
             console.log('paramId istnieje w formData:',formData.hasOwnProperty(paramId));
             console.log('optionId istnieje w paramId i nazywa się:', optionId);
 
-            /*
-              if(paramId.includes(optionId)){
-              console.log('optionId istnieje w paramId i nazywa się:',optionId);
-              }
-            */
-
-            // chceck if option is not default                                        option, else increase price by the cost of this option
+            // chceck if option is not default                                        
             if(!option.default){
               console.log('   option -',optionId,'- is not default');
 
@@ -191,8 +186,25 @@ const select = {
               price += option.price;
             }
 
+            // find img with class '.paramId-optionId' inside thisProduct.imageWrapper
+            const classImage = '.' + paramId + '-' + optionId;
+
+            console.log('---------classImage', classImage);
+            console.log('imageWrapper:',thisProduct.imageWrapper);
+
+            const imgOfSelectedOption = thisProduct.imageWrapper.querySelector(classImage);
+            console.log('==== imgOfSelectedOption:', imgOfSelectedOption);
+
+            // check if it exist , if yes add class 'active' (classNames.menuProduct.imageVisible)
+            if(imgOfSelectedOption != null ){
+              if(formData[paramId] && formData[paramId].includes(optionId)){ 
+              imgOfSelectedOption.classList.add(classNames.menuProduct.imageVisible);
+              console.log('====added class active to imgOfSelectedOption:', imgOfSelectedOption);
+              }
+            } 
+
           } else {
-            console.log('nie ma tego optionId:', optionId);
+            console.log(' - - - - nie ma tego optionId:', optionId);
 
             //check if the option is default
             if(option.default){
@@ -202,6 +214,20 @@ const select = {
               price -= option.price;
             }     
 
+            
+            const classImage = '.' + paramId + '-' + optionId;
+
+            console.log('---------classImage', classImage);
+            console.log('imageWrapper:',thisProduct.imageWrapper);
+
+            const imgOfSelectedOption = thisProduct.imageWrapper.querySelector(classImage);
+            console.log('==== imgOfSelectedOption:', imgOfSelectedOption);
+
+            if(imgOfSelectedOption != null ){
+              imgOfSelectedOption.classList.remove(classNames.menuProduct.imageVisible);
+                   
+            } 
+            
           }
 
         }
