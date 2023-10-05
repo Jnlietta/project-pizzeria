@@ -179,7 +179,7 @@ const select = {
           const classImage = '.' + paramId + '-' + optionId;
 
           // console.log('---------classImage', classImage);
-          console.log('imageWrapper:',thisProduct.imageWrapper);
+          // console.log('imageWrapper:',thisProduct.imageWrapper);
 
           const imgOfSelectedOption = thisProduct.imageWrapper.querySelector(classImage);
           // console.log('==== imgOfSelectedOption:', imgOfSelectedOption);
@@ -243,6 +243,17 @@ const select = {
 
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
+
+      thisWidget.getElements(element);
+    }
+    getElements(element){
+      const thisWidget = this;
+
+      thisWidget.element = element; //referencja do diva zawierajacego buttony +- i input
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input); // referencja do taga input wyswietlajacy ilosc miedzy buttonami - i +
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease); //referencja do link buttona ktory zmniejsza ilosc
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease); //referencja do link buttona ktory zwieksza ilosc
+
     }
   }
 
@@ -269,7 +280,7 @@ const select = {
       // console.log('*** App starting ***');
       // console.log('thisApp:', thisApp);
       // console.log('classNames:', classNames);
-      // console.log('settings:', settings);
+       console.log('settings:', settings);
       // console.log('templates:', templates);
 
       thisApp.initData();
