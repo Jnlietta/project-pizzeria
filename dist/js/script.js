@@ -173,6 +173,15 @@ const select = {
           const option = param.options[optionId];
           console.log(optionId, option);
 
+          // find img with class '.paramId-optionId' inside thisProduct.imageWrapper
+          const classImage = '.' + paramId + '-' + optionId;
+
+          console.log('---------classImage', classImage);
+          console.log('imageWrapper:',thisProduct.imageWrapper);
+
+          const imgOfSelectedOption = thisProduct.imageWrapper.querySelector(classImage);
+          console.log('==== imgOfSelectedOption:', imgOfSelectedOption);
+
           // check if optionId of category paramId is selected in form formData
           if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) {
             console.log('paramId istnieje w formData:',formData.hasOwnProperty(paramId));
@@ -184,18 +193,9 @@ const select = {
 
               //add option price to price variable
               price += option.price;
-            }
+            }         
 
-            // find img with class '.paramId-optionId' inside thisProduct.imageWrapper
-            const classImage = '.' + paramId + '-' + optionId;
-
-            console.log('---------classImage', classImage);
-            console.log('imageWrapper:',thisProduct.imageWrapper);
-
-            const imgOfSelectedOption = thisProduct.imageWrapper.querySelector(classImage);
-            console.log('==== imgOfSelectedOption:', imgOfSelectedOption);
-
-            // check if it exist , if yes add class 'active' (classNames.menuProduct.imageVisible)
+            // check if image exist , if yes add class 'active' (classNames.menuProduct.imageVisible)
             if(imgOfSelectedOption != null ){
               if(formData[paramId] && formData[paramId].includes(optionId)){ 
               imgOfSelectedOption.classList.add(classNames.menuProduct.imageVisible);
@@ -212,24 +212,14 @@ const select = {
 
               // reduce price variable
               price -= option.price;
-            }     
+            }
 
-            
-            const classImage = '.' + paramId + '-' + optionId;
-
-            console.log('---------classImage', classImage);
-            console.log('imageWrapper:',thisProduct.imageWrapper);
-
-            const imgOfSelectedOption = thisProduct.imageWrapper.querySelector(classImage);
-            console.log('==== imgOfSelectedOption:', imgOfSelectedOption);
-
+            // check if image exist , if yes remove class 'active'
             if(imgOfSelectedOption != null ){
               imgOfSelectedOption.classList.remove(classNames.menuProduct.imageVisible);
                    
             } 
-            
           }
-
         }
       }
 
