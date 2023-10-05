@@ -224,6 +224,8 @@ const select = {
           }
         }
       }
+      /* multiply price by amount */
+      price *= thisProduct.amountWidget.value;
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
@@ -233,6 +235,10 @@ const select = {
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    
+      thisProduct.amountWidgetElem.addEventListener('updated', function() {
+        thisProduct.processOrder();
+      });
     }
 
   }
@@ -245,7 +251,16 @@ const select = {
       console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
+
+      if(thisWidget.input.value=null){
+      thisWidget.setValue(thisWidget.input.value);
+      } else {
+        thisWidget.setValue(settings.amountWidget.defaultValue);
+      }
+
+      thisWidget.initActions();
     }
+
     getElements(element){
       const thisWidget = this;
 
@@ -253,7 +268,47 @@ const select = {
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input); // referencja do taga input wyswietlajacy ilosc miedzy buttonami - i +
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease); //referencja do link buttona ktory zmniejsza ilosc
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease); //referencja do link buttona ktory zwieksza ilosc
+    }
 
+    setValue(value){
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      /* TODO: Add validation */
+      if(thisWidget.value!== newValue && !isNaN(newValue) && 
+      settings.amountWidget.defaultMax >= newValue && settings.amountWidget.defaultMin <= newValue){ //dlaczego jest taki operator  a nie != ??     /* dlaczego nie? :newValue!=null    / dlaczego nie Number.isNaN()?
+      thisWidget.value = newValue; // czy cos sie stanie jak zamienimy miejscami te rzeczy wzgledem znaku rowna sie?
+      
+      thisWidget.announce();
+      }
+
+      thisWidget.input.value = thisWidget.value;
+    }
+
+    initActions(){
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+
+    announce(){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
 
