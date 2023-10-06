@@ -199,10 +199,9 @@ const select = {
 
             // check if image exist , if yes add class 'active' (classNames.menuProduct.imageVisible)
             if(imgOfSelectedOption != null ){
-              if(formData[paramId] && formData[paramId].includes(optionId)){ 
               imgOfSelectedOption.classList.add(classNames.menuProduct.imageVisible);
               //console.log('====added class active to imgOfSelectedOption:', imgOfSelectedOption);
-              }
+              
             } 
 
           } else {
@@ -252,7 +251,7 @@ const select = {
 
       thisWidget.getElements(element);
 
-      if(thisWidget.input.value=null){
+      if(thisWidget.input.value==null){
       thisWidget.setValue(thisWidget.input.value);
       } else {
         thisWidget.setValue(settings.amountWidget.defaultValue);
