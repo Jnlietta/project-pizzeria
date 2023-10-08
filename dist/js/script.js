@@ -137,7 +137,7 @@
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
 
       //console.log('thisProduct.cartButton',thisProduct.cartButton);
-      //console.log('thisProduct.priceElem',thisProduct.priceElem);
+      console.log('thisProduct.priceElem',thisProduct.priceElem);
       //console.log('thisProduct.amountWidgetElem',thisProduct.amountWidgetElem);
     }
 
@@ -270,6 +270,9 @@
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
 
+      //the single price after choosing product options (this amount above the button 'add to cart')
+      thisProduct.priceSingle = price;
+
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
@@ -287,13 +290,25 @@
     addToChart(){
       const thisProduct = this;
 
-      app.cart.add(thisProduct);
+      app.cart.add(thisProduct.prepareCartProduct());
+
     }
 
     prepareCartProduct(){
       const thisProduct = this;
 
       const productSummary = {};
+      productSummary.id = thisProduct.id;
+      productSummary.name = thisProduct.data.name;
+      productSummary.amount = thisProduct.amountWidget.value;
+      productSummary.price = thisProduct.priceSingle; //to powinna byc cena za 1 produkt z opcjami ale jesli klient od razu doda dwa takie produkty to bedzie cena podwojna a nie jednostkowa za ten produkt, wiec zamienilam te price i priceSingle alby odpowiaday temu czego szukamy
+      productSummary.priceSingle =  productSummary.price / productSummary.amount ;
+      productSummary.params = {};
+
+
+      console.log('productSummary',productSummary);
+
+      return productSummary; 
     }
   }
 
