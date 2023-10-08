@@ -301,8 +301,8 @@
       productSummary.id = thisProduct.id;
       productSummary.name = thisProduct.data.name;
       productSummary.amount = thisProduct.amountWidget.value;
-      productSummary.price = thisProduct.priceSingle; //to powinna byc cena za 1 produkt z opcjami ale jesli klient od razu doda dwa takie produkty to bedzie cena podwojna a nie jednostkowa za ten produkt, wiec zamienilam te price i priceSingle alby odpowiaday temu czego szukamy
-      productSummary.priceSingle =  productSummary.price / productSummary.amount ;
+      productSummary.priceSingle = thisProduct.priceSingle; //to powinna byc cena za 1 produkt z opcjami ale jesli klient od razu doda dwa takie produktty to bedzie cena podwojna a nie jednostkowa za ten produkt
+      productSummary.price = productSummary.amount * productSummary.priceSingle;
       productSummary.params = {};
 
 
