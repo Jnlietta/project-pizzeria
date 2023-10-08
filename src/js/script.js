@@ -289,6 +289,12 @@
 
       app.cart.add(thisProduct);
     }
+
+    prepareCartProduct(){
+      const thisProduct = this;
+
+      const productSummary = {};
+    }
   }
 
   class AmountWidget{
