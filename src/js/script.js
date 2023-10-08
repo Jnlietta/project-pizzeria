@@ -190,6 +190,8 @@
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+
+        thisProduct.addToChart(); //dodanie tego produktu do koszyka
       });
     }
 
@@ -282,6 +284,11 @@
       });
     }
 
+    addToChart(){
+      const thisProduct = this;
+
+      app.cart.add(thisProduct);
+    }
   }
 
   class AmountWidget{
@@ -373,13 +380,19 @@
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     }
+
     initActions(){
       const thisCart = this;
 
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
 
+    add(menuProduct){
+      // const thisCart = this;
+
+      console.log('adding product', menuProduct);
     }
   }
 
@@ -404,7 +417,7 @@
     init: function(){
       const thisApp = this;
       // console.log('*** App starting ***');
-      // console.log('thisApp:', thisApp);
+       console.log('thisApp:', thisApp);
       // console.log('classNames:', classNames);
       // console.log('settings:', settings);
       // console.log('templates:', templates);
