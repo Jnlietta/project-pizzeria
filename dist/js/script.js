@@ -477,7 +477,7 @@
       thisCart.products.push(menuProduct);
       console.log('thisCart.products:',thisCart.products);
 
-      thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);
+      thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
     }
   }
 
