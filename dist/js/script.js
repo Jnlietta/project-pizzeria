@@ -464,7 +464,7 @@
     add(menuProduct){
       const thisCart = this;
 
-      console.log('adding product', menuProduct); // productSummary
+      //console.log('adding product', menuProduct); // productSummary
 
       const generatedHTML = templates.cartProduct(menuProduct);
 
@@ -493,6 +493,7 @@
       thisCartProduct.params = menuProduct.params;
 
       thisCartProduct.getElements(element);
+      thisCartProduct.initAmountWidget();
 
       console.log('thisCartProduct',thisCartProduct);
     }
@@ -508,6 +509,14 @@
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
 
+    }
+
+    initAmountWidget(){
+      const thisCartProduct = this;
+      thisCartProduct.amountWidgetElem = new AmountWidget(thisCartProduct.dom.amountWidget);
+      console.log('hihihi', thisCartProduct.amountWidgetElem);
+
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function(){});
     }
   }
 
@@ -532,7 +541,7 @@
     init: function(){
       const thisApp = this;
       // console.log('*** App starting ***');
-       console.log('thisApp:', thisApp);
+      // console.log('thisApp:', thisApp);
       // console.log('classNames:', classNames);
       // console.log('settings:', settings);
       // console.log('templates:', templates);
