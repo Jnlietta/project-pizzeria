@@ -137,7 +137,7 @@
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
 
       //console.log('thisProduct.cartButton',thisProduct.cartButton);
-      console.log('thisProduct.priceElem',thisProduct.priceElem);
+      //console.log('thisProduct.priceElem',thisProduct.priceElem);
       //console.log('thisProduct.amountWidgetElem',thisProduct.amountWidgetElem);
     }
 
@@ -301,14 +301,63 @@
       productSummary.id = thisProduct.id;
       productSummary.name = thisProduct.data.name;
       productSummary.amount = thisProduct.amountWidget.value;
-      productSummary.priceSingle = thisProduct.priceSingle; //to powinna byc cena za 1 produkt z opcjami ale jesli klient od razu doda dwa takie produktty to bedzie cena podwojna a nie jednostkowa za ten produkt
-      productSummary.price = productSummary.amount * productSummary.priceSingle;
-      productSummary.params = {};
+      productSummary.price = thisProduct.priceSingle; //to powinna byc cena za 1 produkt z opcjami ale jesli klient od razu doda dwa takie produkty to bedzie cena podwojna a nie jednostkowa za ten produkt, wiec zamienilam te price i priceSingle alby odpowiaday temu czego szukamy
+      productSummary.priceSingle =  productSummary.price / productSummary.amount ;
+      productSummary.params = thisProduct.prepareCartProductParams();
 
 
       console.log('productSummary',productSummary);
 
       return productSummary; 
+    }
+
+    prepareCartProductParams(){
+      const thisProduct = this;
+
+      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      // console.log('formData:',formData);
+
+      //new object params
+      const params = {};
+
+      // for every category (param)...
+      for(let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+         //console.log(paramId, param);
+
+         //create category param in params const eg. params = {ingredients: {name: 'Ingridients', options: {}}}
+         params[paramId] = {
+            label:  param.label,
+            options: {}
+         }
+
+        // for every option in this category
+        for(let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+          // console.log(optionId, option);
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId);
+          
+
+          // check if optionId of category paramId is selected in form formData
+          if(optionSelected) {
+           
+            params[paramId] = {
+              label:  param.label,
+              options: { 
+                [optionId]: option.label
+              }
+            }
+
+            //params[paramId].options = [optionId].option[label];    Dlaczego taka linijka nie dziala? wyskakuje blad ze nie znamy label
+            
+            
+          } 
+        }
+      }
+      return params;
     }
   }
 
