@@ -468,16 +468,16 @@
 
       const generatedHTML = templates.cartProduct(menuProduct);
 
-      thisCart.element = utils.createDOMFromHTML(generatedHTML);     //to jest nadpisywane kazdym kolejnym produktem dodanym do koszyka 
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);     //to jest nadpisywane kazdym kolejnym produktem dodanym do koszyka 
 
       const cartContainer = thisCart.dom.productList;
 
-      cartContainer.appendChild(thisCart.element);
+      cartContainer.appendChild(generatedDOM);
 
-      thisCart.products.push(menuProduct);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('thisCart.products:',thisCart.products);
 
-      thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
+      //thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
     }
   }
 
