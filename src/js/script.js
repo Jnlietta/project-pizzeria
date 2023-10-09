@@ -109,7 +109,7 @@
       const thisProduct = this;
 
       /* generate HTML based on template */
-      const generatedHTML = templates.menuProduct(thisProduct.data);  //string szablonu z danymi thisproduct.data
+      const generatedHTML = templates.menuProduct(thisProduct.data);  //string szablonu z danymi thisProduct.data
 
       /* create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML); //czym jest product.element, tworzymy ze string !prawdziwy element html!
@@ -302,7 +302,7 @@
       productSummary.name = thisProduct.data.name;
       productSummary.amount = thisProduct.amountWidget.value;
       productSummary.price = thisProduct.priceSingle; //to powinna byc cena za 1 produkt z opcjami ale jesli klient od razu doda dwa takie produkty to bedzie cena podwojna a nie jednostkowa za ten produkt, wiec zamienilam te price i priceSingle alby odpowiaday temu czego szukamy
-      productSummary.priceSingle =  productSummary.price / productSummary.amount ;
+      productSummary.priceSingle = productSummary.price / productSummary.amount;
       productSummary.params = thisProduct.prepareCartProductParams();
 
 
@@ -447,8 +447,9 @@
 
       thisCart.dom = {};
 
-      thisCart.dom.wrapper = element;
+      thisCart.dom.wrapper = element; //div o id=cart zawierajacy caly koszyk 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList); //ul z class=cart_order-summary gdzie bedzie lista produktow z koszyka
     }
 
     initActions(){
@@ -460,9 +461,17 @@
     }
 
     add(menuProduct){
-      // const thisCart = this;
+      const thisCart = this;
 
-      console.log('adding product', menuProduct);
+      console.log('adding product', menuProduct); // productSummary
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+
+      thisCart.element = utils.createDOMFromHTML(generatedHTML);     //to jest nadpisywane kazdym kolejnym produktem dodanym do koszyka 
+
+      const cartContainer = thisCart.dom.productList;
+
+      cartContainer.appendChild(thisCart.element);
     }
   }
 
