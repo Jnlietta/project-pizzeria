@@ -36,7 +36,7 @@
     cart: {
       productList: '.cart__order-summary',
       toggleTrigger: '.cart__summary',
-      totalNumber: `.cart__total-number`,
+      totalNumber: '.cart__total-number',
       totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
       subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
       deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
@@ -306,7 +306,7 @@
       productSummary.params = thisProduct.prepareCartProductParams();
 
 
-      //console.log('productSummary',productSummary);
+      console.log('productSummary',productSummary);
 
       return productSummary; 
 
@@ -451,6 +451,13 @@
       thisCart.dom.wrapper = element; //div o id=cart zawierajacy caly koszyk 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList); //ul z class=cart_order-summary gdzie bedzie lista produktow z koszyka
+    
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee); //miejsce ceny dostawy w koszyku DOM
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+
+      console.log('thisCart.dom.totalPrice',thisCart.dom.totalPrice);
     }
 
     initActions(){
@@ -505,6 +512,16 @@
       }
 
       console.log('totalPrice:',thisCart.totalPrice);
+
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      thisCart.dom.totalNumber.innerHTML = totalNumber;
+
+      for(let price of thisCart.dom.totalPrice){ 
+        price.innerHTML = thisCart.totalPrice;
+      }
+
+      
     }
   }
 
