@@ -306,7 +306,7 @@
       productSummary.params = thisProduct.prepareCartProductParams();
 
 
-      console.log('productSummary',productSummary);
+      //console.log('productSummary',productSummary);
 
       return productSummary; 
 
@@ -440,7 +440,7 @@
       thisCart.getElements(element);
       thisCart.initActions();
 
-      console.log('new Cart',thisCart);
+      //console.log('new Cart',thisCart);
     }
 
     getElements(element){
@@ -475,7 +475,7 @@
       cartContainer.appendChild(generatedDOM);
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      console.log('thisCart.products:',thisCart.products);
+      //console.log('thisCart.products:',thisCart.products);
 
       //thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
     }
@@ -495,7 +495,7 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
 
-      console.log('thisCartProduct',thisCartProduct);
+      //console.log('thisCartProduct',thisCartProduct);
     }
 
     getElements(element){
@@ -514,7 +514,7 @@
     initAmountWidget(){
       const thisCartProduct = this;
       thisCartProduct.amountWidgetElem = new AmountWidget(thisCartProduct.dom.amountWidget);
-      console.log('thisCartProduct.amountWidgetElem:', thisCartProduct.amountWidgetElem);
+      //console.log('thisCartProduct.amountWidgetElem:', thisCartProduct.amountWidgetElem);
 
       thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
         thisCartProduct.amount = thisCartProduct.amountWidgetElem.value;
