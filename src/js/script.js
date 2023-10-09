@@ -514,9 +514,13 @@
     initAmountWidget(){
       const thisCartProduct = this;
       thisCartProduct.amountWidgetElem = new AmountWidget(thisCartProduct.dom.amountWidget);
-      console.log('hihihi', thisCartProduct.amountWidgetElem);
+      console.log('thisCartProduct.amountWidgetElem:', thisCartProduct.amountWidgetElem);
 
-      thisCartProduct.dom.amountWidget.addEventListener('updated', function(){});
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
+        thisCartProduct.amount = thisCartProduct.amountWidgetElem.value;
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+      });
     }
   }
 
