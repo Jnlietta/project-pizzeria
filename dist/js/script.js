@@ -476,7 +476,7 @@
       });
 
       thisCart.dom.productList.addEventListener('remove', function(event){
-        thisCart.remove(event.detail.cartProduct);
+        thisCart.remove(event.detail.cartProduct); //thisCartProduct jest argumentem
       })
     }
 
@@ -485,16 +485,15 @@
 
       //console.log('adding product', menuProduct); // productSummary
 
-      const generatedHTML = templates.cartProduct(menuProduct);
-
-      const generatedDOM = utils.createDOMFromHTML(generatedHTML);     //to jest nadpisywane kazdym kolejnym produktem dodanym do koszyka 
+      const generatedHTML = templates.cartProduct(menuProduct);   //szablon wybranego produktu z wstawionymi danymi od productSummary w postaci kodu html
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);  //?? //szablon z danymi productSummary zamieniony na element DOM //to jest nadpisywane kazdym kolejnym produktem dodanym do koszyka 
 
       const cartContainer = thisCart.dom.productList;
 
-      cartContainer.appendChild(generatedDOM);
+      cartContainer.appendChild(generatedDOM); // wstawienie szablonu DOM w odpowiednie miejsce w html
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      //console.log('thisCart.products:',thisCart.products);
+      console.log('thisCart.products:',thisCart.products);
 
       //thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
 
@@ -535,10 +534,27 @@
 
       
     }
+
+    remove(argument){ //thisCartProduct
+      const thisCart = this;
+
+      console.log('argument',argument);
+
+      //remove product from DOM html
+      argument.dom.wrapper.remove();
+
+      //remove informations about this product from array thisCart.products
+      const indexOfArgument = thisCart.products.indexOf(argument);
+      console.log('index',indexOfArgument);
+      thisCart.products.splice(indexOfArgument, 1);
+
+      //call the method update to recalculate amounts after product remove 
+      thisCart.update();
+    }
   }
 
   class CartProduct{
-    constructor(menuProduct, element){
+    constructor(menuProduct, element){  //productSummary, generatedDOM
       const thisCartProduct = this;
 
       thisCartProduct.id = menuProduct.id;
@@ -560,7 +576,7 @@
 
       thisCartProduct.dom = {};
 
-      thisCartProduct.dom.wrapper = element;
+      thisCartProduct.dom.wrapper = element; //generatedDOM (szablon z danymi productSummary jako DOM) // <li> zawierajace widger nazwe cene i ikony edycji lub usuniecia dla produktu na liscie wybranych produktow
       thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
       thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
@@ -592,7 +608,7 @@
 
       thisCartProduct.dom.wrapper.dispatchEvent(event);
 
-      console.log('wywołana');
+      console.log('wywolana');
     }
 
     initActions(){
