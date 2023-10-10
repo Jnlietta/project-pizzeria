@@ -345,15 +345,16 @@
           // check if optionId of category paramId is selected in form formData
           if(optionSelected) {
            
-            params[paramId] = {
+            /*params[paramId] = {
               label:  param.label,
               options: { 
                 [optionId]: option.label
               }
-            }
+            }*/
 
             //params[paramId].options = [optionId].option[label];    Dlaczego taka linijka nie dziala? wyskakuje blad ze nie znamy label
             
+            params[paramId].options[optionId] = option.label;
             
           } 
         }
