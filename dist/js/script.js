@@ -371,6 +371,8 @@
       //console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
+      
+      console.log('=========thisWidget.input.value',thisWidget.input.value);
 
       if(thisWidget.input.value==null){
       thisWidget.setValue(thisWidget.input.value);
@@ -394,7 +396,9 @@
       const thisWidget = this;
 
       const newValue = parseInt(value);
-
+      console.log('newValue',newValue);
+      console.log('value',value);
+      
       /* TODO: Add validation */
       if(thisWidget.value!== newValue && !isNaN(newValue) && 
       settings.amountWidget.defaultMax >= newValue && settings.amountWidget.defaultMin <= newValue){ //dlaczego jest taki operator  a nie != ??     /* dlaczego nie? :newValue!=null    / dlaczego nie Number.isNaN()?
