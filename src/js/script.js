@@ -374,7 +374,7 @@
       
       console.log('=========thisWidget.input.value',thisWidget.input.value);
 
-      if(thisWidget.input.value==null){
+      if(thisWidget.input.value){
       thisWidget.setValue(thisWidget.input.value);
       } else {
         thisWidget.setValue(settings.amountWidget.defaultValue);
@@ -540,18 +540,18 @@
       
     }
 
-    remove(argument){ //thisCartProduct
+    remove(CartProductInstance){ //thisCartProduct
       const thisCart = this;
 
-      console.log('argument',argument);
+      console.log('CartProductInstance',CartProductInstance);
 
       //remove product from DOM html
-      argument.dom.wrapper.remove();
+      CartProductInstance.dom.wrapper.remove();
 
       //remove informations about this product from array thisCart.products
-      const indexOfArgument = thisCart.products.indexOf(argument);
-      console.log('index',indexOfArgument);
-      thisCart.products.splice(indexOfArgument, 1);
+      const indexOfInstance = thisCart.products.indexOf(CartProductInstance);
+      console.log('index',indexOfInstance);
+      thisCart.products.splice(indexOfInstance, 1);
 
       //call the method update to recalculate amounts after product remove 
       thisCart.update();
