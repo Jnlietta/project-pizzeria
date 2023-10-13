@@ -514,7 +514,7 @@
       cartContainer.appendChild(generatedDOM); // wstawienie szablonu DOM w odpowiednie miejsce w html
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      //console.log('thisCart.products:',thisCart.products);
+      console.log('thisCart.products:',thisCart.products);
 
       //thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
 
@@ -610,7 +610,6 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       thisCartProduct.initActions();
-      thisCartProduct.getData();
 
       //console.log('thisCartProduct',thisCartProduct);
     }
@@ -682,6 +681,8 @@
       cartProductSummary.params = thisCartProduct.params;
 
       console.log('cartProductSummary',cartProductSummary);
+
+      return cartProductSummary;
     }
   }
 
