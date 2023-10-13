@@ -576,7 +576,7 @@
     sendOrder(){
       const thisCart = this;
 
-      //const url = settings.db.url + '/' + settings.db.orders;
+      const url = settings.db.url + '/' + settings.db.orders;
 
       const payload = {
         address: thisCart.dom.address.value, //adres klienta wpisany w koszyku,      DLACZEGO DODANIE PO KROPCE VALUE DZIALA NA ODCZYTYWANIE INPUTU SKORO TO NIE OBIEKT A ELEMENT DOM??
@@ -593,6 +593,22 @@
       }
 
       console.log('payload',payload);
+
+      const options = {
+        method:'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      };
+
+      fetch(url, options)
+        .then(function(response){
+          return response.json();
+        }) .then(function(parsedResponse){
+          console.log('parsedResponse',parsedResponse);
+        });
+        
     }
   }
 
