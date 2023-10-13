@@ -120,10 +120,10 @@
       thisProduct.element = utils.createDOMFromHTML(generatedHTML); //czym jest product.element, tworzymy ze string !prawdziwy element html!
 
       /* find menu container */
-      const menuContainer = document.querySelector(select.containerOf.menu);
+      thisProduct.menuContainer = document.querySelector(select.containerOf.menu);
 
       /* add element to menu */
-      menuContainer.appendChild(thisProduct.element);//dodaj dziecko do elementu nowy html
+      thisProduct.menuContainer.appendChild(thisProduct.element);//dodaj dziecko do elementu nowy html
     }
 
     getElements(){
@@ -297,6 +297,7 @@
 
       app.cart.add(thisProduct.prepareCartProduct());
 
+      thisProduct.clearMenuProducts();
     }
 
     prepareCartProduct(){
@@ -365,6 +366,17 @@
         }
       }
       return params;
+    }
+
+    clearMenuProducts(){ //dla chetnych
+      const thisProduct = this;
+
+      //clear products and init default menu 
+      thisProduct.menuContainer.innerHTML = '';
+      app.initMenu();
+      console.log('thisProduct.data',thisProduct.data);
+      console.log('app data products:',app.data.products);
+
     }
   }
 
@@ -607,12 +619,12 @@
         .then(function(response){
           return response.json();
         }) .then(function(parsedResponse){
-          console.log('parsedResponse',parsedResponse);
+          console.log('sendOrder parsedResponse',parsedResponse);
         });    
 
     }
 
-    clearProductList(){
+    clearProductList(){ //dla chetnych
       const thisCart = this;
 
       //remove all products from Cart list
@@ -621,6 +633,8 @@
       console.log('thisCart.products after click "ORDER":',thisCart.products);
 
       thisCart.dom.productList.innerHTML = '';
+      thisCart.dom.address.value = '';
+      thisCart.dom.phone.value = '';
       thisCart.update();
 
     }
@@ -740,7 +754,7 @@
           return rawResponse.json();
         })
         .then(function(parsedResponse){
-          console.log('parsedResponse', parsedResponse);
+          console.log('initData parsedResponse', parsedResponse);
 
           /*save parsedResponse as thisApp.data.products*/
           thisApp.data.products = parsedResponse;

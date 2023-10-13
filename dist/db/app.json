@@ -242,49 +242,63 @@
       "id": 2
     },
     {
-      "address": "",
-      "phone": "",
+      "address": "heheheh",
+      "phone": "00991",
       "totalPrice": 29,
       "subtotalPrice": 9,
       "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
+          "id": "breakfast",
+          "name": "Zia Giulia's Breakfast",
           "amount": 1,
           "price": 9,
           "priceSingle": 9,
-          "params": {}
+          "params": {
+            "coffee": {
+              "label": "Coffee type",
+              "options": {
+                "macchiato": "Macchiato "
+              }
+            }
+          }
         }
       ],
       "id": 3
     },
     {
-      "address": "",
-      "phone": "",
+      "address": "heheheh",
+      "phone": "00991",
       "totalPrice": 29,
       "subtotalPrice": 9,
       "totalNumber": 1,
       "deliveryFee": 20,
       "products": [
         {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
+          "id": "breakfast",
+          "name": "Zia Giulia's Breakfast",
           "amount": 1,
           "price": 9,
           "priceSingle": 9,
-          "params": {}
+          "params": {
+            "coffee": {
+              "label": "Coffee type",
+              "options": {
+                "macchiato": "Macchiato "
+              }
+            }
+          }
         }
       ],
       "id": 4
     },
     {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
+      "address": "Lula",
+      "phone": "506",
+      "totalPrice": 52,
+      "subtotalPrice": 32,
+      "totalNumber": 2,
       "deliveryFee": 20,
       "products": [
         {
@@ -294,16 +308,48 @@
           "price": 9,
           "priceSingle": 9,
           "params": {}
+        },
+        {
+          "id": "pizza",
+          "name": "Nonna Alba's Pizza",
+          "amount": 1,
+          "price": 23,
+          "priceSingle": 23,
+          "params": {
+            "sauce": {
+              "label": "Sauce",
+              "options": {
+                "tomato": "Tomato"
+              }
+            },
+            "toppings": {
+              "label": "Toppings",
+              "options": {
+                "olives": "Olives",
+                "redPeppers": "Red peppers",
+                "greenPeppers": "Green peppers",
+                "mushrooms": "Mushrooms",
+                "basil": "Fresh basil",
+                "salami": "Salami"
+              }
+            },
+            "crust": {
+              "label": "pizza crust",
+              "options": {
+                "standard": "standard"
+              }
+            }
+          }
         }
       ],
       "id": 5
     },
     {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
+      "address": "Lula",
+      "phone": "506",
+      "totalPrice": 49,
+      "subtotalPrice": 29,
+      "totalNumber": 2,
       "deliveryFee": 20,
       "products": [
         {
@@ -313,342 +359,143 @@
           "price": 9,
           "priceSingle": 9,
           "params": {}
+        },
+        {
+          "id": "pizza",
+          "name": "Nonna Alba's Pizza",
+          "amount": 1,
+          "price": 20,
+          "priceSingle": 20,
+          "params": {
+            "sauce": {
+              "label": "Sauce",
+              "options": {
+                "tomato": "Tomato"
+              }
+            },
+            "toppings": {
+              "label": "Toppings",
+              "options": {
+                "olives": "Olives",
+                "redPeppers": "Red peppers",
+                "greenPeppers": "Green peppers",
+                "mushrooms": "Mushrooms",
+                "basil": "Fresh basil"
+              }
+            },
+            "crust": {
+              "label": "pizza crust",
+              "options": {
+                "standard": "standard"
+              }
+            }
+          }
         }
       ],
       "id": 6
     },
     {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 7
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 8
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 9
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 10
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 11
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 12
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 56,
-      "subtotalPrice": 36,
-      "totalNumber": 4,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 13
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 47,
-      "subtotalPrice": 27,
+      "address": "Lola",
+      "phone": "321",
+      "totalPrice": 48,
+      "subtotalPrice": 28,
       "totalNumber": 3,
       "deliveryFee": 20,
       "products": [
         {
           "id": "cake",
           "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
           "amount": 2,
           "price": 18,
           "priceSingle": 9,
           "params": {}
-        }
-      ],
-      "id": 14
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 15
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 29,
-      "subtotalPrice": 9,
-      "totalNumber": 1,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 16
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
         },
         {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
+          "id": "salad",
+          "name": "Nonno Alberto's Salad",
           "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
+          "price": 10,
+          "priceSingle": 10,
+          "params": {
+            "ingredients": {
+              "label": "Ingredients",
+              "options": {
+                "cucumber": "Cucumber",
+                "tomatoes": "Tomatoes",
+                "olives": "Olives",
+                "feta": "Feta cheese",
+                "herbs": "Fresh herbs"
+              }
+            }
+          }
         }
       ],
-      "id": 17
+      "id": 7
     },
     {
-      "address": "",
-      "phone": "",
-      "totalPrice": 38,
-      "subtotalPrice": 18,
-      "totalNumber": 2,
-      "deliveryFee": 20,
-      "products": [
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        },
-        {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "id": 18
-    },
-    {
-      "address": "",
-      "phone": "",
-      "totalPrice": 65,
-      "subtotalPrice": 45,
+      "address": "Lula",
+      "phone": "123",
+      "totalPrice": 64,
+      "subtotalPrice": 44,
       "totalNumber": 5,
       "deliveryFee": 20,
       "products": [
         {
           "id": "cake",
           "name": "Zio Stefano's Doughnut",
-          "amount": 2,
-          "price": 18,
+          "amount": 1,
+          "price": 9,
           "priceSingle": 9,
           "params": {}
         },
         {
-          "id": "cake",
-          "name": "Zio Stefano's Doughnut",
+          "id": "breakfast",
+          "name": "Zia Giulia's Breakfast",
           "amount": 3,
           "price": 27,
           "priceSingle": 9,
-          "params": {}
+          "params": {
+            "coffee": {
+              "label": "Coffee type",
+              "options": {
+                "macchiato": "Macchiato "
+              }
+            }
+          }
+        },
+        {
+          "id": "salad",
+          "name": "Nonno Alberto's Salad",
+          "amount": 1,
+          "price": 8,
+          "priceSingle": 8,
+          "params": {
+            "ingredients": {
+              "label": "Ingredients",
+              "options": {
+                "cucumber": "Cucumber",
+                "tomatoes": "Tomatoes",
+                "herbs": "Fresh herbs"
+              }
+            }
+          }
         }
       ],
-      "id": 19
+      "id": 8
     },
     {
-      "address": "",
-      "phone": "",
-      "totalPrice": 74,
-      "subtotalPrice": 54,
-      "totalNumber": 6,
+      "address": "Ala",
+      "phone": "1234",
+      "totalPrice": 38,
+      "subtotalPrice": 18,
+      "totalNumber": 2,
       "deliveryFee": 20,
       "products": [
         {
           "id": "cake",
           "name": "Zio Stefano's Doughnut",
-          "amount": 5,
-          "price": 45,
+          "amount": 1,
+          "price": 9,
           "priceSingle": 9,
           "params": {}
         },
@@ -668,7 +515,7 @@
           }
         }
       ],
-      "id": 20
+      "id": 9
     }
   ]
 }
