@@ -474,6 +474,9 @@
       //console.log('thisCart.dom.totalPrice',thisCart.dom.totalPrice);
 
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      
     }
 
     initActions(){
@@ -521,20 +524,20 @@
     update(){
       const thisCart = this;
 
-      const deliveryFee = settings.cart.defaultDeliveryFee;
-      let totalNumber = 0;
-      let subtotalPrice = 0;
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
+      thisCart.totalNumber = 0;
+      thisCart.subtotalPrice = 0;
 
       for (let productCart of thisCart.products){
-        totalNumber += productCart.amount;
-        subtotalPrice += productCart.price;
+        thisCart.totalNumber += productCart.amount;
+        thisCart.subtotalPrice += productCart.price;
       }
 
-      //console.log('totalNumber:',totalNumber);
-      //console.log('subtotalPrice:',subtotalPrice);
+      //console.log('totalNumber:',thisCart.totalNumber);
+      //console.log('subtotalPrice:',thisCart.subtotalPrice);
 
-      if(totalNumber!=0){
-      thisCart.totalPrice = subtotalPrice + deliveryFee;
+      if(thisCart.totalNumber!=0){
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
       } else {
         thisCart.totalPrice = 0;
@@ -542,9 +545,9 @@
 
       //console.log('totalPrice:',thisCart.totalPrice);
 
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
-      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
-      thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
 
       for(let price of thisCart.dom.totalPrice){ 
         price.innerHTML = thisCart.totalPrice;
@@ -571,7 +574,21 @@
     }
 
     sendOrder(){
-      
+      const thisCart = this;
+
+      //const url = settings.db.url + '/' + settings.db.orders;
+
+      const payload = {
+        address: thisCart.dom.address.value, //adres klienta wpisany w koszyku,      DLACZEGO DODANIE PO KROPCE VALUE DZIALA NA ODCZYTYWANIE INPUTU SKORO TO NIE OBIEKT A ELEMENT DOM??
+        phone: thisCart.dom.phone.value, //numer telefonu wpisany w koszyku,
+        totalPrice: thisCart.totalPrice, //calkowita cena za zamowienie,
+        subtotalPrice: thisCart.subtotalPrice, //cena calkowita - koszt dostawy,
+        totalNumber: thisCart.totalNumber, //calkowita liczba sztuk,
+        deliveryFee: thisCart.deliveryFee, //koszt dostawy,
+        products: [] //tablica obecnych w koszyku produktow
+      };
+
+      console.log('payload',payload);
     }
   }
 
