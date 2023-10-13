@@ -498,6 +498,7 @@
         event.preventDefault();
 
         thisCart.sendOrder();
+        thisCart.clearProductList();
       });
     }
 
@@ -607,8 +608,21 @@
           return response.json();
         }) .then(function(parsedResponse){
           console.log('parsedResponse',parsedResponse);
-        });
-        
+        });    
+
+    }
+
+    clearProductList(){
+      const thisCart = this;
+
+      //remove all products from Cart list
+      thisCart.products.splice(0,thisCart.totalNumber);
+
+      console.log('thisCart.products after click "ORDER":',thisCart.products);
+
+      thisCart.dom.productList.innerHTML = '';
+      thisCart.update();
+
     }
   }
 
