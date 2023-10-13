@@ -311,7 +311,7 @@
       productSummary.params = thisProduct.prepareCartProductParams();
 
 
-      console.log('productSummary',productSummary);
+      //console.log('productSummary',productSummary);
 
       return productSummary; 
 
@@ -377,7 +377,7 @@
 
       thisWidget.getElements(element);
       
-      console.log('=========thisWidget.input.value',thisWidget.input.value);
+      //console.log('=========thisWidget.input.value',thisWidget.input.value);
 
       if(thisWidget.input.value){
       thisWidget.setValue(thisWidget.input.value);
@@ -401,8 +401,8 @@
       const thisWidget = this;
 
       const newValue = parseInt(value);
-      console.log('newValue',newValue);
-      console.log('value',value);
+      //console.log('newValue',newValue);
+      //console.log('value',value);
       
       /* TODO: Add validation */
       if(thisWidget.value!== newValue && !isNaN(newValue) && 
@@ -471,7 +471,7 @@
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
 
-      console.log('thisCart.dom.totalPrice',thisCart.dom.totalPrice);
+      //console.log('thisCart.dom.totalPrice',thisCart.dom.totalPrice);
 
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     }
@@ -511,7 +511,7 @@
       cartContainer.appendChild(generatedDOM); // wstawienie szablonu DOM w odpowiednie miejsce w html
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      console.log('thisCart.products:',thisCart.products);
+      //console.log('thisCart.products:',thisCart.products);
 
       //thisCart.cartProduct = new CartProduct(menuProduct, thisCart.element);  
 
@@ -530,8 +530,8 @@
         subtotalPrice += productCart.price;
       }
 
-      console.log('totalNumber:',totalNumber);
-      console.log('subtotalPrice:',subtotalPrice);
+      //console.log('totalNumber:',totalNumber);
+      //console.log('subtotalPrice:',subtotalPrice);
 
       if(totalNumber!=0){
       thisCart.totalPrice = subtotalPrice + deliveryFee;
@@ -540,7 +540,7 @@
         thisCart.totalPrice = 0;
       }
 
-      console.log('totalPrice:',thisCart.totalPrice);
+      //console.log('totalPrice:',thisCart.totalPrice);
 
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
@@ -556,14 +556,14 @@
     remove(CartProductInstance){ //thisCartProduct
       const thisCart = this;
 
-      console.log('CartProductInstance',CartProductInstance);
+      //console.log('CartProductInstance',CartProductInstance);
 
       //remove product from DOM html
       CartProductInstance.dom.wrapper.remove();
 
       //remove informations about this product from array thisCart.products
       const indexOfInstance = thisCart.products.indexOf(CartProductInstance);
-      console.log('index',indexOfInstance);
+      //console.log('index',indexOfInstance);
       thisCart.products.splice(indexOfInstance, 1);
 
       //call the method update to recalculate amounts after product remove 
@@ -571,10 +571,7 @@
     }
 
     sendOrder(){
-      const thisCart = this;
-
-      const url = settings.db.url + '/' + settings.db.orders;
-
+      
     }
   }
 
@@ -633,7 +630,7 @@
 
       thisCartProduct.dom.wrapper.dispatchEvent(event);
 
-      console.log('wywolana');
+      //console.log('wywolana');
     }
 
     initActions(){
