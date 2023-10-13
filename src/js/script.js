@@ -588,6 +588,10 @@
         products: [] //tablica obecnych w koszyku produktow
       };
 
+      for(let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+      }
+
       console.log('payload',payload);
     }
   }
