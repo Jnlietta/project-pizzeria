@@ -606,6 +606,7 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       thisCartProduct.initActions();
+      thisCartProduct.getData();
 
       //console.log('thisCartProduct',thisCartProduct);
     }
@@ -662,6 +663,21 @@
 
         thisCartProduct.remove();
       });
+    }
+
+    getData(){
+      const thisCartProduct = this;
+
+      //ma byc zwrocony nowy obiekt ktory z thisCartProduct bedzie zawieral tylko te wlasciwosci: id  amount price priceSingle name params
+      const cartProductSummary = {};
+      cartProductSummary.id = thisCartProduct.id;
+      cartProductSummary.name = thisCartProduct.name;
+      cartProductSummary.amount = thisCartProduct.amount;
+      cartProductSummary.price = thisCartProduct.price;
+      cartProductSummary.priceSingle = thisCartProduct.priceSingle;
+      cartProductSummary.params = thisCartProduct.params;
+
+      console.log('cartProductSummary',cartProductSummary);
     }
   }
 
