@@ -165,25 +165,25 @@ class Cart{
           return response.json();
         }) .then(function(parsedResponse){
           console.log('sendOrder parsedResponse',parsedResponse);
-          thisCart.clearProductList();
+          //thisCart.clearProductList();
         });    
 
     }
 
-    clearProductList(){ //dla chetnych
-      const thisCart = this;
+    // clearProductList(){ //dla chetnych
+    //   const thisCart = this;
 
-      //remove all products from Cart list
-      thisCart.products.splice(0,thisCart.totalNumber);
+    //   //remove all products from Cart list
+    //   thisCart.products.splice(0,thisCart.totalNumber);
 
-      console.log('thisCart.products after click "ORDER":',thisCart.products);
+    //   console.log('thisCart.products after click "ORDER":',thisCart.products);
 
-      thisCart.dom.productList.innerHTML = '';
-      thisCart.dom.address.value = '';
-      thisCart.dom.phone.value = '';
-      thisCart.update();
+    //   thisCart.dom.productList.innerHTML = '';
+    //   thisCart.dom.address.value = '';
+    //   thisCart.dom.phone.value = '';
+    //   thisCart.update();
 
-    }
+    // }
   }
 
 export default Cart;

@@ -216,7 +216,7 @@ class Product{
       );
       thisProduct.element.dispatchEvent(event);
 
-      thisProduct.clearMenuProducts();
+      //thisProduct.clearMenuProducts();
     }
 
     prepareCartProduct(){
@@ -287,23 +287,23 @@ class Product{
       return params;
     }
 
-    clearMenuProducts(){ //dla chetnych
-      const thisProduct = this;
+    // clearMenuProducts(){ //dla chetnych
+    //   const thisProduct = this;
 
-      //clear products and init default menu 
-      thisProduct.menuContainer.innerHTML = '';
+    //   //clear products and init default menu 
+    //   thisProduct.menuContainer.innerHTML = '';
 
-      const event = new CustomEvent('clear-menu-products', {
-        bubbles: true,
-      }
-      );
-      thisProduct.element.dispatchEvent(event);
+    //   const event = new CustomEvent('clear-menu-products', {
+    //     bubbles: true,
+    //   }
+    //   );
+    //   thisProduct.element.dispatchEvent(event);
 
-      // app.initMenu();
-      // console.log('thisProduct.data',thisProduct.data);
-      // console.log('app data products:',app.data.products);
+    //   // app.initMenu();
+    //   // console.log('thisProduct.data',thisProduct.data);
+    //   // console.log('app data products:',app.data.products);
 
-    }
+    // }
   }
 
 export default Product;
