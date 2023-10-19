@@ -6,12 +6,27 @@ import Cart from "./components/Cart.js";
   const app = {
     initPages: function(){
       const thisApp = this;
-      console.log('thisApp:',thisApp);
+      //console.log('thisApp:',thisApp);
 
-      thisApp.pages = document.querySelector(select.containerOf.pages).children;
+      thisApp.pages = document.querySelector(select.containerOf.pages).children;  //.children to wbudowana metoda elementu DOM mozna to wyczytac z konsoli tak jak .id
       thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
-      thisApp.activatePage(thisApp.pages[0].id);
+      const idFromHash = window.location.hash.replace('#/', '');
+      //console.log('idFromHash',idFromHash);
+
+      let pageMatchingHash = thisApp.pages[0].id;
+
+      for(let page of thisApp.pages){
+        if(page.id == idFromHash){
+          pageMatchingHash = page.id;
+          break;
+        }
+      }
+      
+      //console.log('pageMatchingHash',pageMatchingHash);
+
+      //thisApp.activatePage(thisApp.pages[0].id);                                  //musimy zmienic id z argumentu na id wziete z url strony bez "#/"
+      thisApp.activatePage(pageMatchingHash);
 
       for(let link of thisApp.navLinks){
         link.addEventListener('click', function(event){
@@ -23,7 +38,10 @@ import Cart from "./components/Cart.js";
 
           /* run thisApp.activatePage with that id */
           thisApp.activatePage(id);
-        });
+
+          /* change URL hash */
+          window.location.hash = '#/' + id;                                    //ta linijka dodaje w adresie URL koncówke zaczynajaca sie od # efekt np. "http://localhost:3002/#order" -> "http://localhost:3002/#booking"
+        });                                                                    // dodalismy '/' by strona nie przewijała nam sie do elementu o tym id co koncowka url     
       }
     },
 
@@ -37,14 +55,14 @@ import Cart from "./components/Cart.js";
         //   page.classList.add(classNames.pages.active);
         // } else {
         //   page.classList.remove(classNames.pages.active);
-        // }                                                    w tym przypadku, linijka z toggle wystarczy
+        // }                                                                   // w tym przypadku, linijka z toggle wystarczy i znaczy to samo co zakomentowane linijki
 
         page.classList.toggle(classNames.pages.active, page.id == pageId);
       }
 
       /* add class 'active' to matching links, remove from non-matching */
       for(let link of thisApp.navLinks){
-        link.classList.toggle(
+        link.classList.toggle(                                                 //.toogle jako pierwszy argument przyjmuje nazwe klasy, a jako drugi przyjmuje warunek czyli mozna stosowac zamiast if
           classNames.nav.active, 
           link.getAttribute('href') == '#' + pageId
           );
@@ -74,7 +92,7 @@ import Cart from "./components/Cart.js";
           return rawResponse.json();
         })
         .then(function(parsedResponse){
-          console.log('initData parsedResponse', parsedResponse);
+          //console.log('initData parsedResponse', parsedResponse);
 
           /*save parsedResponse as thisApp.data.products*/
           thisApp.data.products = parsedResponse;
@@ -83,7 +101,7 @@ import Cart from "./components/Cart.js";
           thisApp.initMenu();
         });
       
-      console.log('thisApp.data', JSON.stringify(thisApp.data));
+      //console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
 
     init: function(){
