@@ -1,6 +1,7 @@
 import { settings, select, classNames } from "./settings.js";
 import Product from "./components/Product.js";
 import Cart from "./components/Cart.js";
+import Booking from "./components/Booking.js";
 
 
   const app = {
@@ -69,6 +70,14 @@ import Cart from "./components/Cart.js";
       }
     },
 
+    initBooking(){
+      const thisApp = this;
+
+      thisApp.bookingContainer = document.querySelector(select.containerOf.booking);
+
+      thisApp.booking = new Booking (thisApp.bookingContainer);
+    },
+
     initMenu: function(){
       const thisApp = this;
       // console.log('thisApp.data:',thisApp.data);
@@ -113,10 +122,10 @@ import Cart from "./components/Cart.js";
       // console.log('templates:', templates);
 
       thisApp.initPages();
-
       thisApp.initData();
       //thisApp.initMenu(); skasowane dla serwera i przeniesione do initData, poniewaz uruchamialaby sie zanim nasz skrypt otrzymalby z serwera liste produktow
       thisApp.initCart();
+      thisApp.initBooking();
     },
 
     initCart: function(){
