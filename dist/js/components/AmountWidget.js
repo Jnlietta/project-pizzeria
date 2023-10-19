@@ -1,7 +1,10 @@
 import { select, settings  } from "../settings.js";
+import BaseWidget from "./BaseWidget.js";
 
-class AmountWidget{
+class AmountWidget extends BaseWidget{
     constructor(element) {
+    super(element, settings.amountWidget.defaultValue); //super() = konstruktor klasy BaseWidget , element-pierwszy argument z konstruktora BaseWidget
+
       const thisWidget = this;
 
       //console.log('AmountWidget:', thisWidget);
@@ -9,10 +12,10 @@ class AmountWidget{
 
       thisWidget.getElements(element);
       
-      //console.log('=========thisWidget.input.value',thisWidget.input.value);
+      //console.log('=========thisWidget.dom.input.value',thisWidget.dom.input.value);
 
-      if(thisWidget.input.value){
-      thisWidget.setValue(thisWidget.input.value);
+      if(thisWidget.dom.input.value){
+      thisWidget.setValue(thisWidget.dom.input.value);
       } else {
         thisWidget.setValue(settings.amountWidget.defaultValue);
       }
@@ -20,61 +23,46 @@ class AmountWidget{
       thisWidget.initActions();
     }
 
-    getElements(element){
+    getElements(){
       const thisWidget = this;
 
-      thisWidget.element = element; //referencja do diva zawierajacego buttony +- i input
-      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input); // referencja do taga input wyswietlajacy ilosc miedzy buttonami - i +
-      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease); //referencja do link buttona ktory zmniejsza ilosc
-      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease); //referencja do link buttona ktory zwieksza ilosc
+      //usuwamy to bo w BaseWidget podajemy ta wartosc w 1 argumencie konstruktora: thisWidget.element = element; //referencja do diva zawierajacego buttony +- i input
+      thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input); // referencja do taga input wyswietlajacy ilosc miedzy buttonami - i +
+      thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease); //referencja do link buttona ktory zmniejsza ilosc
+      thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease); //referencja do link buttona ktory zwieksza ilosc
     }
 
-    setValue(value){
+    isValid(value){
+      return !isNaN(value)
+      &&  value <= settings.amountWidget.defaultMax  
+      &&  value >= settings.amountWidget.defaultMin;
+    }
+
+    renderValue(){
       const thisWidget = this;
 
-      const newValue = parseInt(value);
-      //console.log('newValue',newValue);
-      //console.log('value',value);
-      
-      /* TODO: Add validation */
-      if(thisWidget.value!== newValue && !isNaN(newValue) && 
-      settings.amountWidget.defaultMax >= newValue && settings.amountWidget.defaultMin <= newValue){ //dlaczego jest taki operator  a nie != ??     /* dlaczego nie? :newValue!=null    / dlaczego nie Number.isNaN()?
-      thisWidget.value = newValue; // czy cos sie stanie jak zamienimy miejscami te rzeczy wzgledem znaku rowna sie?
-      
-      thisWidget.announce();
-      }
+      thisWidget.dom.input.value = thisWidget.value;
 
-      thisWidget.input.value = thisWidget.value;
     }
 
     initActions(){
       const thisWidget = this;
 
-      thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.input.value);
+      thisWidget.dom.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.dom.input.value);
       });
 
-      thisWidget.linkDecrease.addEventListener('click', function(event){
+      thisWidget.dom.linkDecrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value - 1);
       });
 
-      thisWidget.linkIncrease.addEventListener('click', function(event){
+      thisWidget.dom.linkIncrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
       });
     }
-
-    announce(){
-      const thisWidget = this;
-
-      //const event = new Event('updated');
-      const event = new CustomEvent ('updated', {
-        bubbles: true
-      });
-
-      thisWidget.element.dispatchEvent(event);
-    }
+    
   }
 
 export default AmountWidget;
