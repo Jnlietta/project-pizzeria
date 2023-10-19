@@ -25,22 +25,22 @@ class BaseWidget {
         }
   
         thisWidget.renderValue();
-      }
+    }
 
-      parseValue(value){
+    parseValue(value){
         return parseInt(value);
-      }
+    }
   
-      isValid(value){
+    isValid(value){
         return !isNaN(value);
-      }
+    }
 
-      renderValue(){
+    renderValue(){
         const thisWidget = this;
   
         thisWidget.dom.wrapper.innerHTML = thisWidget.value;
-        
-      }
+
+    }
       
     announce(){
         const thisWidget = this;
@@ -50,8 +50,8 @@ class BaseWidget {
           bubbles: true
         });
   
-        thisWidget.element.dispatchEvent(event);
-      }
+        thisWidget.dom.wrapper.dispatchEvent(event);
+    }
 }
 
 export default BaseWidget;
