@@ -189,19 +189,13 @@ class Booking {
         thisBooking.amountWidgetPeople = new AmountWidget(thisBooking.dom.peopleAmount);
         thisBooking.amountWidgetHours = new AmountWidget(thisBooking.dom.hoursAmount);
 
-        thisBooking.dom.peopleAmount.addEventListener('updated', function(){
-            
-        });
-
-        thisBooking.dom.hoursAmount.addEventListener('updated', function(){
-            
-        });
-
         thisBooking.datePicker = new DatePicker(thisBooking.dom.dateWrapper);
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.timeWrapper);
 
         thisBooking.dom.wrapper.addEventListener('updated', function(){
             thisBooking.updateDOM();
+
+            thisBooking.resetTables();
         });
 
         thisBooking.dom.tablesWrapper.addEventListener('click',  function(event){
@@ -209,6 +203,8 @@ class Booking {
 
             //reference to clicked element div DOM
             const clickedElement = event.target;
+
+            
             //console.log('clickedElement',clickedElement);
             thisBooking.initTables(clickedElement);
         });
@@ -232,15 +228,15 @@ class Booking {
                     //console.log('selectedTable', thisBooking.selectedTable);
 
                     //check if there is another table with class 'selected', if yes remove this class from it and add to clicked table
-                    for(const child of clickedTable.offsetParent.children){
-                        //console.log('child',child);
+                    for(const table of thisBooking.dom.tables){
+                        //console.log('table',table);
 
-                        const selectedChild = child.classList.contains(classNames.booking.tableSelected);
-                        //console.log('child with class selected',selectedChild);
+                        const tableClassSelected = table.classList.contains(classNames.booking.tableSelected);
+                        //console.log('table with class selected',tableClassSelected);
                                         
-                        if(selectedChild){ 
+                        if(tableClassSelected){ 
                             //remove class selected
-                            child.classList.remove(classNames.booking.tableSelected);                        
+                            table.classList.remove(classNames.booking.tableSelected);                        
                         }                    
                     }                    
                         //add class 'selected' to clicked table
@@ -253,13 +249,24 @@ class Booking {
                     thisBooking.selectedTable = '';
                 }
             } else {
-                window.alert("Stolik zajety!");
+                window.alert("Stolik zajęty!");
                 console.log('Stolik zajety!');
             }
         }
         console.log('selectedTable after all', thisBooking.selectedTable)
 
+    }
 
+    resetTables(){
+        const thisBooking = this;
+
+        for(const table of thisBooking.dom.tables){ 
+        //remove class 'selected' to table
+        table.classList.remove(classNames.booking.tableSelected);
+        }
+        
+        //clear the selectedTable
+        thisBooking.selectedTable = '';
     }
 }
 
