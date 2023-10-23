@@ -10,7 +10,7 @@ class Booking {
         const thisBooking =  this;
         
         thisBooking.element = container;
-        thisBooking.selectedTable = [];
+        thisBooking.selectedTable = '';
 
         thisBooking.render(container);
         thisBooking.initWidgets();
@@ -102,7 +102,7 @@ class Booking {
             }
         }
 
-        console.log('thisBooking.booked', thisBooking.booked);
+        //console.log('thisBooking.booked', thisBooking.booked);
 
         thisBooking.updateDOM();
     }
@@ -226,9 +226,9 @@ class Booking {
                 //get attribute data-table from clicked table
                 const dataTable = clickedTable.getAttribute(settings.booking.tableIdAttribute);
                 
-                //add number of a table to array selectedTable
-                thisBooking.selectedTable.push(dataTable);
-                console.log('selectedTable array', thisBooking.selectedTable);
+                //add number of a table to selectedTable
+                thisBooking.selectedTable = dataTable;
+                console.log('selectedTable', thisBooking.selectedTable);
 
                 //check if there is another table with class 'selected', if yes remove this class from it and add to clicked table
                 for(const child of clickedTable.offsetParent.children){
@@ -237,18 +237,13 @@ class Booking {
                     const selectedChild = child.classList.contains('selected');
                     //console.log('child with class selected',selectedChild);
 
-                    const selectedChildId = child.getAttribute(settings.booking.tableIdAttribute);
+                    //const selectedChildId = child.getAttribute(settings.booking.tableIdAttribute);
                                         
                     if(selectedChild){ 
 
                         //remove class selected
                         child.classList.remove('selected');
-
-                        //get the index of clicked element 'dataId' from array thisBooksList.favoriteBooks
-                        const indexOfDataId = thisBooking.selectedTable.indexOf(selectedChildId);
-  
-                        //remove the index from array
-                        thisBooking.selectedTable.splice(indexOfDataId,1);
+                        
                     }                    
                 }
                 //add class 'selected' to clicked table
@@ -258,7 +253,7 @@ class Booking {
                 console.log('Stolik zajety!');
             }
         }
-        console.log('selectedTable array after all', thisBooking.selectedTable)
+        console.log('selectedTable after all', thisBooking.selectedTable)
 
 
     }
