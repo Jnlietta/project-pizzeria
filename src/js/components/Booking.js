@@ -223,37 +223,41 @@ class Booking {
             if(!clickedTable.classList.contains(classNames.booking.tableBooked)){
                 //console.log(clickedTable);
 
-                //get attribute data-table from clicked table
-                const dataTable = clickedTable.getAttribute(settings.booking.tableIdAttribute);
-                
-                //add number of a table to selectedTable
-                thisBooking.selectedTable = dataTable;
-                //console.log('selectedTable', thisBooking.selectedTable);
+                if(!clickedTable.classList.contains(classNames.booking.tableSelected)){
+                    //get attribute data-table from clicked table
+                    const dataTable = clickedTable.getAttribute(settings.booking.tableIdAttribute);
+                    
+                    //add number of a table to selectedTable
+                    thisBooking.selectedTable = dataTable;
+                    //console.log('selectedTable', thisBooking.selectedTable);
 
-                //check if there is another table with class 'selected', if yes remove this class from it and add to clicked table
-                for(const child of clickedTable.offsetParent.children){
-                    //console.log('child',child);
+                    //check if there is another table with class 'selected', if yes remove this class from it and add to clicked table
+                    for(const child of clickedTable.offsetParent.children){
+                        //console.log('child',child);
 
-                    const selectedChild = child.classList.contains('selected');
-                    //console.log('child with class selected',selectedChild);
-
-                    //const selectedChildId = child.getAttribute(settings.booking.tableIdAttribute);
+                        const selectedChild = child.classList.contains(classNames.booking.tableSelected);
+                        //console.log('child with class selected',selectedChild);
                                         
-                    if(selectedChild){ 
-
-                        //remove class selected
-                        child.classList.remove('selected');
-                        
+                        if(selectedChild){ 
+                            //remove class selected
+                            child.classList.remove(classNames.booking.tableSelected);                        
+                        }                    
                     }                    
+                        //add class 'selected' to clicked table
+                        clickedTable.classList.add(classNames.booking.tableSelected);
+                } else {
+                    //remove class 'selected' to clicked table
+                    clickedTable.classList.remove(classNames.booking.tableSelected);
+
+                    //clear the selectedTable
+                    thisBooking.selectedTable = '';
                 }
-                //add class 'selected' to clicked table
-                clickedTable.classList.add(classNames.booking.tableSelected);
             } else {
                 window.alert("Stolik zajety!");
                 console.log('Stolik zajety!');
             }
         }
-        //console.log('selectedTable after all', thisBooking.selectedTable)
+        console.log('selectedTable after all', thisBooking.selectedTable)
 
 
     }
