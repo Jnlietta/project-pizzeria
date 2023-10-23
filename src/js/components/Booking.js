@@ -228,7 +228,7 @@ class Booking {
                 
                 //add number of a table to selectedTable
                 thisBooking.selectedTable = dataTable;
-                console.log('selectedTable', thisBooking.selectedTable);
+                //console.log('selectedTable', thisBooking.selectedTable);
 
                 //check if there is another table with class 'selected', if yes remove this class from it and add to clicked table
                 for(const child of clickedTable.offsetParent.children){
@@ -253,7 +253,7 @@ class Booking {
                 console.log('Stolik zajety!');
             }
         }
-        console.log('selectedTable after all', thisBooking.selectedTable)
+        //console.log('selectedTable after all', thisBooking.selectedTable)
 
 
     }
