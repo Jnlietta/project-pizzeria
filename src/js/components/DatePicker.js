@@ -8,7 +8,8 @@ class DatePicker extends BaseWidget{
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
-    thisWidget.initPlugin();
+    thisWidget.initPlugin(); 
+
   }
   initPlugin(){
     const thisWidget = this;
@@ -30,6 +31,7 @@ class DatePicker extends BaseWidget{
       ],
       onChange: function(selectedDates, dateStr) {
         thisWidget.value = dateStr;
+        console.log('value',thisWidget.value);
       },
     });
   }
