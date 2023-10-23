@@ -173,6 +173,22 @@
         }
   
       }
+
+      &.selected {
+        border: 4px solid greenyellow;
+        color: green;
+
+        &::after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: green;
+          opacity: 0.4;
+        }
+      }
     }
   
     [data-table="1"] {

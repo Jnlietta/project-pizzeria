@@ -10,6 +10,7 @@ class Booking {
         const thisBooking =  this;
         
         thisBooking.element = container;
+        thisBooking.selectedTable = [];
 
         thisBooking.render(container);
         thisBooking.initWidgets();
@@ -20,8 +21,8 @@ class Booking {
     getData(){
         const thisBooking = this;
 
-const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
-const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
+        const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+        const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
 
 
         const params = {
@@ -175,12 +176,10 @@ const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBoo
         thisBooking.dom.peopleAmount = container.querySelector(select.booking.peopleAmount);
         thisBooking.dom.hoursAmount = container.querySelector(select.booking.hoursAmount);
         thisBooking.dom.dateWrapper = container.querySelector(select.widgets.datePicker.wrapper);
-        //ooking()thisBooking.dom.dateInput = container.querySelector(select.widgets.datePicker.input);
         thisBooking.dom.timeWrapper = container.querySelector(select.widgets.hourPicker.wrapper);
-        //thisBooking.dom.timeInput = container.querySelector(select.widgets.hourPicker.input);
-        //thisBooking.dom.timeOutput = container.querySelector(select.widgets.hourPicker.output);
 
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+        thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.booking.tablesWrapper);
 
     }
 
@@ -204,9 +203,64 @@ const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBoo
         thisBooking.dom.wrapper.addEventListener('updated', function(){
             thisBooking.updateDOM();
         });
-        thisBooking.dom.timeWrapper.addEventListener('updated', function(){
 
+        thisBooking.dom.tablesWrapper.addEventListener('click',  function(event){
+            event.preventDefault();
+
+            //reference to clicked element div DOM
+            const clickedElement = event.target;
+            //console.log('clickedElement',clickedElement);
+            thisBooking.initTables(clickedElement);
         });
+    }
+
+    initTables(clickedTable){
+        const thisBooking = this;
+
+        //check if clicked table contain class 'table'
+        if(clickedTable.classList.contains(classNames.booking.table)){
+            //check if clicked table is available - doesn't contain class 'booked'
+            if(!clickedTable.classList.contains(classNames.booking.tableBooked)){
+                //console.log(clickedTable);
+
+                //get attribute data-table from clicked table
+                const dataTable = clickedTable.getAttribute(settings.booking.tableIdAttribute);
+                
+                //add number of a table to array selectedTable
+                thisBooking.selectedTable.push(dataTable);
+                console.log('selectedTable array', thisBooking.selectedTable);
+
+                //check if there is another table with class 'selected', if yes remove this class from it and add to clicked table
+                for(const child of clickedTable.offsetParent.children){
+                    //console.log('child',child);
+
+                    const selectedChild = child.classList.contains('selected');
+                    //console.log('child with class selected',selectedChild);
+
+                    const selectedChildId = child.getAttribute(settings.booking.tableIdAttribute);
+                                        
+                    if(selectedChild){ 
+
+                        //remove class selected
+                        child.classList.remove('selected');
+
+                        //get the index of clicked element 'dataId' from array thisBooksList.favoriteBooks
+                        const indexOfDataId = thisBooking.selectedTable.indexOf(selectedChildId);
+  
+                        //remove the index from array
+                        thisBooking.selectedTable.splice(indexOfDataId,1);
+                    }                    
+                }
+                //add class 'selected' to clicked table
+                clickedTable.classList.add(classNames.booking.tableSelected);
+            } else {
+                window.alert("Stolik zajety!");
+                console.log('Stolik zajety!');
+            }
+        }
+        console.log('selectedTable array after all', thisBooking.selectedTable)
+
+
     }
 }
 
