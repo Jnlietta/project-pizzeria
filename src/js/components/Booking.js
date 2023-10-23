@@ -288,7 +288,7 @@ class Booking {
         const thisBooking = this;
 
         const url = settings.db.url + '/' + settings.db.bookings;
-        console.log(url);
+        //console.log(url);
 
         const payload = {
             "date": thisBooking.dom.dateInput.value,         //data wybrana w datePickerze
@@ -308,7 +308,7 @@ class Booking {
             }
           }
     
-          console.log('payload',payload);
+          //console.log('payload',payload);
     
           const options = {
             method:'POST', 
@@ -323,6 +323,8 @@ class Booking {
               return response.json();
             }) .then(function(parsedResponse){
               console.log('sendBooking parsedResponse',parsedResponse);
+              thisBooking.makeBooked(payload.date,payload.hour,payload.duration,payload.table);
+              console.log('thisBooking.booked', thisBooking.booked);
             });  
     }
 

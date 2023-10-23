@@ -323,6 +323,8 @@ class Booking {
               return response.json();
             }) .then(function(parsedResponse){
               console.log('sendBooking parsedResponse',parsedResponse);
+              thisBooking.makeBooked(payload.date,payload.hour,payload.duration,payload.table);
+              console.log('thisBooking.booked', thisBooking.booked);
             });  
     }
 
