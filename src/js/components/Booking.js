@@ -18,6 +18,37 @@ class Booking {
 
     }
 
+    render(container){
+        const thisBooking = this;
+        console.log(this);
+
+        const generatedHTML = templates.bookingWidget();                     //nie wpisujemy danych w nawiasie bo nie potrzebujemy nic dodawac do tego szablonu-brak placeholderow
+        //console.log('generatedHTML',generatedHTML);
+
+        thisBooking.dom = {};
+
+        thisBooking.dom.wrapper = container;
+        
+        thisBooking.dom.wrapper.innerHTML = generatedHTML;  
+        
+        thisBooking.dom.peopleAmount = container.querySelector(select.booking.peopleAmount);
+        thisBooking.dom.hoursAmount = container.querySelector(select.booking.hoursAmount);
+        thisBooking.dom.dateWrapper = container.querySelector(select.widgets.datePicker.wrapper);
+        thisBooking.dom.timeWrapper = container.querySelector(select.widgets.hourPicker.wrapper);
+
+        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+        thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.booking.tablesWrapper);
+
+        thisBooking.dom.dateInput = container.querySelector(select.widgets.datePicker.input);
+        thisBooking.dom.timeOutput = container.querySelector(select.widgets.hourPicker.output);
+        thisBooking.dom.peopleInput = thisBooking.dom.peopleAmount.querySelector(select.widgets.amount.input);
+        thisBooking.dom.hoursInput = thisBooking.dom.hoursAmount.querySelector(select.widgets.amount.input);
+        thisBooking.dom.phoneInput = container.querySelector(select.cart.phone);
+        thisBooking.dom.addressInput = container.querySelector(select.cart.address);
+        thisBooking.dom.startersInputs = container.querySelectorAll(select.booking.starters);
+
+    }
+
     getData(){
         const thisBooking = this;
 
@@ -158,38 +189,6 @@ class Booking {
                 table.classList.remove(classNames.booking.tableBooked);
             }
         }
-    }
-
-    render(container){
-        const thisBooking = this;
-        console.log(this);
-
-        const generatedHTML = templates.bookingWidget();                     //nie wpisujemy danych w nawiasie bo nie potrzebujemy nic dodawac do tego szablonu-brak placeholderow
-        //console.log('generatedHTML',generatedHTML);
-
-        thisBooking.dom = {};
-
-        thisBooking.dom.wrapper = container;
-        
-        thisBooking.dom.wrapper.innerHTML = generatedHTML;  
-        
-        thisBooking.dom.peopleAmount = container.querySelector(select.booking.peopleAmount);
-        thisBooking.dom.hoursAmount = container.querySelector(select.booking.hoursAmount);
-        thisBooking.dom.dateWrapper = container.querySelector(select.widgets.datePicker.wrapper);
-        thisBooking.dom.timeWrapper = container.querySelector(select.widgets.hourPicker.wrapper);
-
-        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-        thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.booking.tablesWrapper);
-
-        thisBooking.dom.dateInput = container.querySelector(select.widgets.datePicker.input);
-        thisBooking.dom.timeOutput = container.querySelector(select.widgets.hourPicker.output);
-        thisBooking.dom.peopleInput = thisBooking.dom.peopleAmount.querySelector(select.widgets.amount.input);
-        thisBooking.dom.hoursInput = thisBooking.dom.hoursAmount.querySelector(select.widgets.amount.input);
-        thisBooking.dom.phoneInput = container.querySelector(select.cart.phone);
-        thisBooking.dom.addressInput = container.querySelector(select.cart.address);
-        thisBooking.dom.startersInputs = container.querySelectorAll(select.booking.starters);
-
-
     }
 
     initWidgets(){
