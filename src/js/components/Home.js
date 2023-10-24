@@ -18,11 +18,15 @@ class Home {
         const generatedHTML = templates.homePage();
 
         /* create element using utils.createElementFromHTML */
-        thisHome.elementDOM = utils.createDOMFromHTML(generatedHTML); //czym jest product.element, tworzymy ze string !prawdziwy element html!
+        thisHome.elementDOM = utils.createDOMFromHTML(generatedHTML);
 
         /* find page container */
         /* add element to page */
-        container.appendChild(thisHome.elementDOM);//dodaj dziecko do elementu nowy html
+        container.appendChild(thisHome.elementDOM);     //dodaj dziecko do elementu nowy html
+    }
+
+    initWidgets(){
+
     }
 }
 
