@@ -3,7 +3,7 @@ import BaseWidget from "./BaseWidget.js";
 
 class AmountWidget extends BaseWidget{
     constructor(element) {
-    super(element, settings.amountWidget.defaultValue); //super() = konstruktor klasy BaseWidget , element-pierwszy argument z konstruktora BaseWidget
+    super(element, settings.amountWidget.defaultValue); //super() = wywołanie konstruktora klasy BaseWidget , element-pierwszy argument z konstruktora BaseWidget
 
       const thisWidget = this;
 

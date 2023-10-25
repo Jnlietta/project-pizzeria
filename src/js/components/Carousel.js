@@ -2,7 +2,7 @@
 
 class Carousel {
     constructor(element) {
-      const thisCarousel = this;
+      //const thisCarousel = this;
 
       this.render(element);
       this.initPlugin();
@@ -18,7 +18,18 @@ class Carousel {
   
     initPlugin() {
       // use plugin to create carousel on thisCarousel.element
+      const elem = document.querySelector('.main-carousel');
+      new Flickity( elem, {
+        // options
+        cellAlign: 'left',
+        contain: true
+      });
       
+    //   // element argument can be a selector string
+    //   //   for an individual element
+    //   const flkty = new Flickity( '.main-carousel', {
+    //     // options
+    //   });
     }
   }
 
