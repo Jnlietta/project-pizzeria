@@ -20,7 +20,7 @@ class Booking {
 
     render(container){
         const thisBooking = this;
-        console.log(this);
+        //console.log(this);
 
         const generatedHTML = templates.bookingWidget();                     //nie wpisujemy danych w nawiasie bo nie potrzebujemy nic dodawac do tego szablonu-brak placeholderow
         //console.log('generatedHTML',generatedHTML);
