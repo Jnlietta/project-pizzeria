@@ -1,4 +1,4 @@
-
+/*First section*/
 .home-wrapper {
     margin: ($base-size * 3.5) auto;
     padding: ($base-size * 6) ($base-size * 4);
@@ -9,10 +9,14 @@
 }
 section {
     margin-bottom: 100px;
+
+    &:nth-of-type(3n){
+        margin-bottom: 0px;
+    }
 }
 .row {
-    height:100%;
-    border:1px solid blue;
+    height: 100%;
+    //border:1px solid blue;
     --bs-gutter-x: 10px;
 }
 
@@ -21,8 +25,6 @@ section {
     height: 100px;
     border-radius: 10%;
     margin-bottom: 10px;
-    justify-content: center;
-    align-items: center;
     position: relative;
     z-index: 2;
 
@@ -68,36 +70,76 @@ section {
         position: relative;
     }
 
-    h5 { // nie wiem jak to zrobic
-        display: none;
-        // position: absolute;
-        // top:100%;
+    h5 {
         font-weight: $font-light;
         font-family: $font-text;
         text-transform: none;
         white-space: nowrap;
+        margin-top: 0px;
+        top: 160%;
+        left: 50%;
         opacity: 0;
-
-        transition: opacity 1s, top 2s;
+        transform: translate(-50%, -50%);
+        position: absolute;
     }
 
     &:hover {
         h5{
-            display: inline;
-            top: 0%;
+            top: 100%;
             opacity: 1;
-            transition: opacity 1s, top 2s;
+            transition: opacity 1s, top 1s;
         }
     }
 }
 
+/*Second section - Carousel*/
+// .main-carousel {
+//     freeScroll: true;
+//     contain: true;
+//     prevNextButtons: false;
+//     autoPlay: true;
+// }
+.carousel-cell {
+    //border: 1px solid green;
+    width: 100%; /* full width */
+    height: 200px; /* height of carousel */
+    margin-right: 10px;
+}
+
+.carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+.carousel-item {
+    //border: 2px solid red;
+    height: 100%;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.opinion {
+    padding: 0 20px;
+    font-size: 13px;
+
+    h4 {
+        text-transform: uppercase;
+    }
+    
+    p:nth-of-type(2n) {
+        font-style: italic;
+      }
+
+}
+
+/*Third section*/
 .gallery-image {
     //border:1px solid green;
-
     position: relative;
     z-index: 2;
     
-
     img {
         width: 100%;
         height: 180px;
@@ -145,27 +187,11 @@ section {
 
 }
 
-.more a {
-    color: $color-main;
+.more {
+    margin-top: 40px;
+
+    a {
+        color: $color-main;
+    }
 }
 
-.carousel-cell {
-    border: 1px solid green;
-    width: 100%; /* full width */
-   height: 160px; /* height of carousel */
-   margin-right: 10px;
-}
-
-.carousel-item img {
-    height: 100%;
-    width:100%;
-    object-fit: cover;
-  }
-
-.carousel-item {
-    border: 2px solid red;
-    height: 100%;
-    margin-bottom: 10px;
-    justify-content: center;
-    align-items: center;
-}
