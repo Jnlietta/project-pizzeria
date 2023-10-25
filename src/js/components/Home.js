@@ -34,9 +34,8 @@ class Home {
         thisHome.dom = {};
 
         thisHome.dom.ordersWrapper = container.querySelector('.orders');
-        thisHome.dom.ordersImg = thisHome.dom.ordersWrapper.querySelector('img');
-
-        console.log(thisHome.dom.ordersImg);
+        //thisHome.dom.ordersImg = thisHome.dom.ordersWrapper.querySelector('img');
+        //console.log(thisHome.dom.ordersImg);
 
         thisHome.dom.carouselsWrapper = container.querySelector('.main-carousel');
     }

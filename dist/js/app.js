@@ -6,12 +6,29 @@ import Home from "./components/Home.js";
 
 
   const app = {
+    init: function(){
+      const thisApp = this;
+      // console.log('*** App starting ***');
+      // console.log('thisApp:', thisApp);
+      // console.log('classNames:', classNames);
+      // console.log('settings:', settings);
+      // console.log('templates:', templates);
+
+      thisApp.initHome();
+      thisApp.initPages();
+      thisApp.initData();
+      //thisApp.initMenu(); skasowane dla serwera i przeniesione do initData, poniewaz uruchamialaby sie zanim nasz skrypt otrzymalby z serwera liste produktow
+      thisApp.initCart();
+      thisApp.initBooking();
+    },
+    
     initPages: function(){
       const thisApp = this;
       //console.log('thisApp:',thisApp);
 
       thisApp.pages = document.querySelector(select.containerOf.pages).children;  //.children to wbudowana metoda elementu DOM mozna to wyczytac z konsoli tak jak .id
       thisApp.navLinks = document.querySelectorAll(select.nav.links);
+      //console.log(thisApp.navLinks);
 
       const idFromHash = window.location.hash.replace('#/', '');
       //console.log('idFromHash',idFromHash);
@@ -120,22 +137,6 @@ import Home from "./components/Home.js";
         });
       
       //console.log('thisApp.data', JSON.stringify(thisApp.data));
-    },
-
-    init: function(){
-      const thisApp = this;
-      // console.log('*** App starting ***');
-      // console.log('thisApp:', thisApp);
-      // console.log('classNames:', classNames);
-      // console.log('settings:', settings);
-      // console.log('templates:', templates);
-
-      thisApp.initPages();
-      thisApp.initData();
-      //thisApp.initMenu(); skasowane dla serwera i przeniesione do initData, poniewaz uruchamialaby sie zanim nasz skrypt otrzymalby z serwera liste produktow
-      thisApp.initCart();
-      thisApp.initHome();
-      thisApp.initBooking();
     },
 
     initCart: function(){

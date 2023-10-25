@@ -49,7 +49,7 @@ export const select = {
       starters: '.checkbox input'
     },
     nav: {
-      links: '.main-nav a',
+      links: '.main-nav a, .home-page-order a, .home-page-booking a'
     },    
     cart: {
       productList: '.cart__order-summary',
