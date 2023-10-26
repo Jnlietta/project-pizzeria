@@ -14,15 +14,14 @@ import Home from "./components/Home.js";
       // console.log('settings:', settings);
       // console.log('templates:', templates);
       thisApp.initPages();
-      
       thisApp.initHome();
-      
+      thisApp.initPages();
       thisApp.initData();
       //thisApp.initMenu(); skasowane dla serwera i przeniesione do initData, poniewaz uruchamialaby sie zanim nasz skrypt otrzymalby z serwera liste produktow
       thisApp.initCart();
       thisApp.initBooking();
     },
-
+    
     initPages: function(){
       const thisApp = this;
       //console.log('thisApp:',thisApp);
