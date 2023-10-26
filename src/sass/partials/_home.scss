@@ -84,7 +84,7 @@ section {
     }
 
     &:hover {
-        h5{
+        h5 {
             top: 100%;
             opacity: 1;
             transition: opacity 1s, top 1s;
@@ -93,12 +93,11 @@ section {
 }
 
 /*Second section - Carousel*/
-// .main-carousel {
-//     freeScroll: true;
-//     contain: true;
-//     prevNextButtons: false;
-//     autoPlay: true;
-// }
+.main-carousel {
+    //border:2px solid red;
+    height: 200px;
+}
+
 .carousel-cell {
     //border: 1px solid green;
     width: 100%; /* full width */
@@ -106,33 +105,31 @@ section {
     margin-right: 10px;
 }
 
-.carousel-item img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-
 .carousel-item {
-    //border: 2px solid red;
+    //border: 2px solid blue;
     height: 100%;
-    margin-bottom: 10px;
-    justify-content: center;
-    align-items: center;
-}
 
-.opinion {
-    padding: 0 20px;
-    font-size: 13px;
-
-    h4 {
-        text-transform: uppercase;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
-    
-    p:nth-of-type(2n) {
-        font-style: italic;
-      }
 
+    .opinion {
+        padding: 0 20px;
+        font-size: 12px;
+    
+        h4 {
+            text-transform: uppercase;
+        }
+        
+        p:nth-of-type(2n) {
+            font-style: italic;
+          }    
+    }
 }
+
+
 
 /*Third section*/
 .gallery-image {
@@ -147,13 +144,29 @@ section {
         object-fit: cover;
     }
 
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 180px;
+        background-color: $color-dark;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.4;
+        visibility: hidden;   
+    }
+
+
     &:hover {
         li {
             visibility: visible;
-            //color: $color-main;
+        }
+
+        &::after{
+            visibility: visible;
         }
     }
-
 }
 
 .gallery-icons {

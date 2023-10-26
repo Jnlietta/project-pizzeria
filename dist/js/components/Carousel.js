@@ -22,7 +22,9 @@ class Carousel {
       new Flickity( elem, {
         // options
         cellAlign: 'left',
-        contain: true
+        contain: true,
+        prevNextButtons: false,
+        autoPlay: true
       });
       
     //   // element argument can be a selector string
