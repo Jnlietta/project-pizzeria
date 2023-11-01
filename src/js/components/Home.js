@@ -10,7 +10,7 @@ class Home {
 
         thisHome.render(container);
         thisHome.getElements(container);
-        thisHome.initWidgets();
+        //thisHome.initWidgets();               //wywołamy ta metode dopiero po załadowaniu strony home w init pages aby karuzela działa
 
     }
 

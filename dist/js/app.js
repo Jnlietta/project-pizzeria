@@ -13,16 +13,21 @@ import Home from "./components/Home.js";
       // console.log('classNames:', classNames);
       // console.log('settings:', settings);
       // console.log('templates:', templates);
-      thisApp.initPages();
-      thisApp.initHome();
-      thisApp.initPages();
+      //thisApp.initPages();                  //usuwamy, ta metoda na dwa wywołania nie jest optymalna jesli startowalibyśmy np z podstrony order lub booking
+      thisApp.initHome();                     //wywołujemy stworzenie podstrony home ale bez wywolania karuzeli
+      const pageObj = {                       //deklarujemy objekt ktory zawiera wszystkie callbacki ktore chcemy uzywac, ich klucz to id strony a funkcja to np uruchomienie metody- tutaj initWidgets, ktora uruchamia karuzele
+        "home": function() {
+          thisApp.home.initWidgets();
+        },
+      }
+      thisApp.initPages(pageObj);             //wywolujemy metode z funkcja callbacks                  
       thisApp.initData();
       //thisApp.initMenu(); skasowane dla serwera i przeniesione do initData, poniewaz uruchamialaby sie zanim nasz skrypt otrzymalby z serwera liste produktow
       thisApp.initCart();
       thisApp.initBooking();
     },
     
-    initPages: function(){
+    initPages: function(callbacks){
       const thisApp = this;
       //console.log('thisApp:',thisApp);
 
@@ -43,6 +48,10 @@ import Home from "./components/Home.js";
       }
       
       //console.log('pageMatchingHash',pageMatchingHash);
+
+      if (pageMatchingHash in callbacks) {                                //sprawdzam czy id wystepuje w metodzie callback jesli tak to uruchamiam ją z tym id
+        callbacks[pageMatchingHash]();
+      }
 
       //thisApp.activatePage(thisApp.pages[0].id);                                  //musimy zmienic id z argumentu na id wziete z url strony bez "#/"
       thisApp.activatePage(pageMatchingHash);
