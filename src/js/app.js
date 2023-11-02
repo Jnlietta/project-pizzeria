@@ -49,9 +49,7 @@ import Home from "./components/Home.js";
       
       //console.log('pageMatchingHash',pageMatchingHash);
 
-      if (pageMatchingHash in callbacks) {                                //sprawdzam czy id wystepuje w metodzie callback jesli tak to uruchamiam ją z tym id
-        callbacks[pageMatchingHash]();
-      }
+
 
       //thisApp.activatePage(thisApp.pages[0].id);                                  //musimy zmienic id z argumentu na id wziete z url strony bez "#/"
       thisApp.activatePage(pageMatchingHash);
@@ -70,6 +68,10 @@ import Home from "./components/Home.js";
           /* change URL hash */
           window.location.hash = '#/' + id;                                    //ta linijka dodaje w adresie URL koncówke zaczynajaca sie od # efekt np. "http://localhost:3002/#order" -> "http://localhost:3002/#booking"
         });                                                                    // dodalismy '/' by strona nie przewijała nam sie do elementu o tym id co koncowka url     
+      }
+
+      if (pageMatchingHash in callbacks) {                                //sprawdzam czy id wystepuje w metodzie callback jesli tak to uruchamiam ją z tym id
+        callbacks[pageMatchingHash]();
       }
     },
 
